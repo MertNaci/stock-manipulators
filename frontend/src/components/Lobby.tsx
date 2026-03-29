@@ -427,7 +427,7 @@ export default function Lobby({ onGameStart }: LobbyProps) {
             <div className="flex items-center justify-center gap-4 text-text-muted text-xs font-mono">
               <span>👥 2-6 Oyuncu</span>
               <span className="text-border-dim">|</span>
-              <span>⏱️ ~2 Dakika</span>
+              <span>⏱️ ~4 Dakika</span>
               <span className="text-border-dim">|</span>
               <span>🃏 8 Kart</span>
             </div>

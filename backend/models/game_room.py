@@ -28,7 +28,7 @@ class GameRoom:
     INITIAL_HAND_SIZE = 3
     CARDS_PER_ROUND = 1          # Her turda kaç kart dağıtılır
     TICK_INTERVAL = 2.0          # Fiyat güncelleme aralığı (saniye)
-    GAME_DURATION_TICKS = 60     # Toplam oyun süresi (tick cinsinden) → 60 × 2s = 120 saniye = 2 dk
+    GAME_DURATION_TICKS = 120    # Toplam oyun süresi (tick cinsinden) → 120 × 2s = 240 saniye = 4 dk
     CARD_DEAL_INTERVAL = 10      # Her 10 tick'te bir kart dağıt
 
     def __init__(self, room_code: str):
