@@ -79,3 +79,10 @@ Open your browser and navigate to `http://localhost:5173`. Open multiple tabs (o
 
 ## 📜 License
 This project is open-source and available under the MIT License.
+
+---
+
+## 👨‍💻 Author
+**Mert Naci Akalın**
+* Full-Stack Web & Game Developer
+* *If you have any questions or want to reach out for collaborations, feel free to contact me!*
