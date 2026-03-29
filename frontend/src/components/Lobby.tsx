@@ -29,13 +29,19 @@ export default function Lobby({ onGameStart }: LobbyProps) {
   const [chatMessages, setChatMessages] = useState<{ name: string; msg: string }[]>([]);
   const [chatInput, setChatInput] = useState('');
   const wsRef = useRef<GameWebSocket | null>(null);
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatScrollContainerRef = useRef<HTMLDivElement>(null);
   const roomRef = useRef<RoomInfo | null>(null);
   const playerIdRef = useRef<string>('');
 
   // Sohbet scroll
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatScrollContainerRef.current) {
+      const container = chatScrollContainerRef.current;
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   }, [chatMessages]);
 
   // WS mesaj dinleyici
@@ -241,7 +247,10 @@ export default function Lobby({ onGameStart }: LobbyProps) {
               <div className="text-text-muted text-xs font-mono uppercase tracking-wider mb-2">
                 💬 Lobi Sohbeti
               </div>
-              <div className="h-36 overflow-y-auto space-y-1 mb-3 pr-2">
+              <div 
+                ref={chatScrollContainerRef}
+                className="h-36 overflow-y-auto space-y-1 mb-3 pr-2"
+              >
                 {chatMessages.length === 0 && (
                   <p className="text-text-muted text-sm italic">Henüz mesaj yok...</p>
                 )}
@@ -259,7 +268,6 @@ export default function Lobby({ onGameStart }: LobbyProps) {
                     <span className="text-text-secondary">{cm.msg}</span>
                   </div>
                 ))}
-                <div ref={chatEndRef} />
               </div>
               <div className="flex gap-2">
                 <input

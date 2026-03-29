@@ -10,10 +10,18 @@ interface EventLogProps {
  * Anonim kart bildirimleri, alım/satım, sistem mesajları
  */
 export default function EventLog({ events }: EventLogProps) {
-  const endRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // scrollIntoView mobilde tüm sayfayı kaydırmaya (zıplamaya) sebep olabiliyor.
+    // Bunun yerine sadece bulunduğumuz div'in kendi scroll yüksekliğini aşağı çekiyoruz.
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   }, [events]);
 
   return (
@@ -21,7 +29,10 @@ export default function EventLog({ events }: EventLogProps) {
       <div className="text-text-muted text-[10px] font-mono uppercase tracking-wider mb-2 flex items-center gap-1">
         📡 CANLI OLAY AKIŞI
       </div>
-      <div className="flex-1 overflow-y-auto space-y-1 pr-1 min-h-0">
+      <div 
+        ref={scrollContainerRef}
+        className="flex-1 overflow-y-auto space-y-1 pr-1 min-h-[150px] max-h-[300px]"
+      >
         {events.length === 0 && (
           <div className="text-text-muted text-xs italic">Henüz olay yok...</div>
         )}
@@ -35,7 +46,6 @@ export default function EventLog({ events }: EventLogProps) {
             <span className="text-text-secondary leading-tight">{event.message}</span>
           </div>
         ))}
-        <div ref={endRef} />
       </div>
     </div>
   );
