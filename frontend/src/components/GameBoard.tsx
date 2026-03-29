@@ -146,13 +146,13 @@ export default function GameBoard({
       <Particles count={15} />
 
       {/* ===== ÜST BAR ===== */}
-      <header className="bg-bg-secondary/80 backdrop-blur-md border-b border-border-dim px-4 py-2 z-20">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <header className="bg-bg-secondary/80 backdrop-blur-md border-b border-border-dim px-2 sm:px-4 py-2 z-20">
+        <div className="max-w-7xl mx-auto flex flex-wrap sm:flex-nowrap items-center justify-between gap-y-2 sm:gap-0">
           {/* Sol: Logo + Oda bilgisi */}
-          <div className="flex items-center gap-3">
-            <span className="text-xl">🎰</span>
+          <div className="flex items-center gap-2 sm:gap-3 order-1">
+            <span className="text-lg sm:text-xl">🎰</span>
             <div>
-              <span className="font-display text-xs text-accent-green tracking-wider">
+              <span className="font-display text-[10px] sm:text-xs text-accent-green tracking-wider">
                 BORSA MANİPÜLATÖRLERİ
               </span>
               <div className="text-[10px] text-text-muted font-mono">
@@ -162,7 +162,7 @@ export default function GameBoard({
           </div>
 
           {/* Orta: Timer */}
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center order-3 w-full sm:w-auto sm:order-2 pt-2 sm:pt-0 border-t border-border-dim sm:border-0 border-dashed">
             <div
               className={`font-display text-2xl tracking-wider ${
                 timeRemaining <= 30
@@ -175,7 +175,7 @@ export default function GameBoard({
               {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
             </div>
             {/* İlerleme çubuğu */}
-            <div className="w-32 h-1 bg-bg-card rounded-full overflow-hidden mt-1">
+            <div className="w-48 sm:w-32 h-1 bg-bg-card rounded-full overflow-hidden mt-1">
               <div
                 className={`h-full rounded-full transition-all duration-1000 ${
                   timeRemaining <= 30
@@ -190,7 +190,7 @@ export default function GameBoard({
           </div>
 
           {/* Sağ: Nakit */}
-          <div className="text-right">
+          <div className="text-right order-2 sm:order-3">
             <div className="text-[10px] text-text-muted font-mono uppercase tracking-wider">
               NAKİT
             </div>
